@@ -42,7 +42,7 @@ class FreeFoodTableViewController: UITableViewController,XMLParserDelegate {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "부산 무료 급식소"
+        self.title = "전라도 섬 정보"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
                 
         let fileManager = FileManager.default

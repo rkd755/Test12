@@ -75,8 +75,11 @@ class SingleMapTableViewController: UITableViewController, CLLocationManagerDele
         // 지도에 현재 위치 마크를 보여줌
         myMapView.showsUserLocation = true
         if sItem != nil{
-            sLat = (sItem["tourYpos"]! as NSString).doubleValue
-            sLong = (sItem["tourXpos"]! as NSString).doubleValue
+            if sItem["tourYpos"] != nil{
+                sLat = (sItem["tourYpos"]! as NSString).doubleValue
+                sLong = (sItem["tourXpos"]! as NSString).doubleValue
+            
+            
             
             let sLoc = sItem["tourZoneNm"]
             let sAddr = sItem["tourAddr"]
@@ -91,8 +94,11 @@ class SingleMapTableViewController: UITableViewController, CLLocationManagerDele
             
             myMapView.addAnnotation(anno)
             myMapView.selectAnnotation(anno, animated: true)
-            
+        
             self.title = sLoc
+            }else{
+                self.title = "위도,경도 정보가 없습니다."
+            }
             sMealDay.textLabel?.text = "명칭"
             sMealDay.detailTextLabel?.text = sItem["tourNm"]
             sTarget.textLabel?.text = "메뉴명"
@@ -117,6 +123,9 @@ class SingleMapTableViewController: UITableViewController, CLLocationManagerDele
         let coor = manager.location?.coordinate
         print("latitute" + String(describing: coor?.latitude) + "/ longitude" + String(describing: coor?.longitude))
     }
+    
+    
+    
 
     /*
     // MARK: - Table view data source
